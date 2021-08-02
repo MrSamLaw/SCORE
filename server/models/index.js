@@ -1,3 +1,4 @@
 const User = require('./User');
+const Competitor = require('./Competitor');
 
-module.exports = { User };
+module.exports = { User, Competitor };
