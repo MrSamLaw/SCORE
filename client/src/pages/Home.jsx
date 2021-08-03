@@ -1,7 +1,5 @@
+import "./home.scss";
+
 export default function Home() {
-  return (
-    <main>
-      <h1>SCORE</h1>
-    </main>
-  );
+  return <main className="sections">Home Section</main>;
 }

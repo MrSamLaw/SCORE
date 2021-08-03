@@ -1,4 +1,5 @@
-import React from 'react';
+import "./App.scss";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Nav from './components/Nav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -40,16 +42,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="container">
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
+        <div className="app">
+          <Nav />
+          <div className="sections">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+          </div>
         </div>
       </Router>
     </ApolloProvider>
