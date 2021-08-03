@@ -7,7 +7,7 @@ export default function Nav() {
       <div className="wrapper">
         <div className="left">
           <ul>
-            <li>
+            <li className="logo">
               <Link to="/">
                 <h1>SCORE!!!</h1>
               </Link>

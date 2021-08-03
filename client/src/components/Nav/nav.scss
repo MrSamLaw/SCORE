@@ -16,15 +16,22 @@
       padding: 0;
       list-style: none;
       display: flex;
-
       li {
         margin-right: 5px;
         cursor: pointer;
         padding: 5px 5px 2px;
+        font-size: 1.2em;
+        font-weight: 300;
 
         a {
           text-decoration: none;
         }
+      }
+
+      .logo {
+        font-size: 36px;
+        font-weight: 900;
+        letter-spacing: -0.07em;
       }
     }
   }
