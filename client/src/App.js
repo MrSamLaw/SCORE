@@ -10,10 +10,11 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './components/Nav';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
+import Home from './pages/Home';
+import Round from './pages/Round'
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -48,6 +49,10 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
+            <Route exact path="/round">
+              <Round />
+            </Route>
+
             <Route exact path="/login">
               <Login />
             </Route>
