@@ -1,0 +1,25 @@
+.card {
+  position: relative;
+  display: flex;
+  margin: 10px;
+
+  .left {
+    flex: 0.5;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+    .carNo {
+      font-size: 100px;
+      font-weight: 900;
+    }
+  }
+  .right {
+    flex: 0.5;
+    position: relative;
+    display: flex;
+    font-size: 1.4em;
+    font-weight: 300;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
