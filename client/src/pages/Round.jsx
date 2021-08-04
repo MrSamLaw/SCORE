@@ -1,3 +1,5 @@
+import "./round.scss";
+
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import CompetitorList from "../components/CompetitorList";

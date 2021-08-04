@@ -45,7 +45,7 @@ function App() {
       <Router>
         <div className="app">
           <Nav />
-          <div className="sections">
+          <div className="pages">
             <Route exact path="/">
               <Home />
             </Route>
