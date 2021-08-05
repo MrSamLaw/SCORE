@@ -6,7 +6,7 @@ const CompetitorList = ({ competitors, firstName, lastName, carNo }) => {
   }
 
   return (
-    <div>
+    <div onClick={() => console.log("Click")}>
       {competitors &&
         competitors.map((competitor) => (
           <div key={competitor._id} className="card">

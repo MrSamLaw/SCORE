@@ -1,0 +1,18 @@
+p {
+  margin: 20px;
+  font-weight: 300;
+}
+
+.qScores {
+  position: relative;
+  display: flex;
+  margin: 10px;
+  flex: 0.3;
+
+  border: 1px solid, red;
+
+  label {
+    font-weight: 700;
+    width: 100%;
+  }
+}

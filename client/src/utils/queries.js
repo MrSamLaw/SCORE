@@ -7,7 +7,40 @@ export const QUERY_COMPETITORS = gql`
             firstName
             lastName
             carNo
-            class
+            # class
+        }
+    }
+`;
+
+export const QUERY_SINGLE_ROUND = gql`
+    query getSingleRound($roundId: ID!) {
+        round(roundId: $roundId) {
+            _id
+            season
+            qualifiers {
+                _id
+            }
+        }
+    }
+`;
+
+export const QUERY_QUALIFY = gql`
+    query getQualify($roundNo:roundNo) {
+        qualify(round: $round) {
+            _id
+            qualOne
+            qualTwo
+            competitor {
+                _id
+                firstName
+                lastName
+                carNo
+            }
+            round {
+                _id
+                roundNo
+                
+            }
         }
     }
 `;

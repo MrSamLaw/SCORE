@@ -22,7 +22,12 @@ export default function Nav() {
         </div>
         <div className="right">
           {Auth.loggedIn() ? (
-            <button onClick={logout}>Logout</button>
+            <ul>
+              <li>
+                <Link to="/round">Round</Link>
+              </li>
+              <button onClick={logout}>Logout</button>
+            </ul>
           ) : (
             <ul>
               <li>
