@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import CompetitorList from "../components/CompetitorList";
 import { QUERY_COMPETITORS } from "../utils/queries";
 import QualifyList from "../components/QualifyList";
+import RoundForm from "../components/RoundForm";
 
 export default function Round() {
   const [currentSection, setCurrentSection] = useState("Competitors");
@@ -32,6 +33,7 @@ export default function Round() {
   return (
     <main>
       Round Section
+      <RoundForm />
       <div className="sectionNav">
         <ul>
           <li

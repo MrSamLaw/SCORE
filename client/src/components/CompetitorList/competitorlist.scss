@@ -2,6 +2,8 @@
   position: relative;
   display: flex;
   margin: 10px;
+  border: 1px solid black;
+  cursor: pointer;
 
   .left {
     flex: 0.5;

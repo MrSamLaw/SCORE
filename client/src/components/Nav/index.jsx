@@ -26,7 +26,10 @@ export default function Nav() {
               <li>
                 <Link to="/round">Round</Link>
               </li>
-              <button onClick={logout}>Logout</button>
+              <li>
+                <Link to="/competitors">Competitors</Link>
+              </li>
+              <li onClick={logout}>Logout</li>
             </ul>
           ) : (
             <ul>

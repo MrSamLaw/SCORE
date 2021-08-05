@@ -15,6 +15,7 @@ import Signup from './pages/Signup';
 
 import Home from './pages/Home';
 import Round from './pages/Round'
+import Competitors from "./pages/Competitors";
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -52,7 +53,9 @@ function App() {
             <Route exact path="/round">
               <Round />
             </Route>
-
+            <Route exact path="/competitors">
+              <Competitors />
+            </Route>
             <Route exact path="/login">
               <Login />
             </Route>

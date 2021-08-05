@@ -23,3 +23,29 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_ROUND = gql`
+  mutation addRound($roundNo: Int!) {
+    addRound(roundNo: $roundNo) {
+      _id
+      roundNo
+      season {
+        _id
+        year
+      }
+      qualifiers {
+        _id
+        competitors {
+          _id
+          firstName
+          lastName
+          carNo
+        }
+      }
+      battles {
+        _id
+      }
+
+    }
+  }
+`;

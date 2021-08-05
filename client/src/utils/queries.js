@@ -12,12 +12,37 @@ export const QUERY_COMPETITORS = gql`
     }
 `;
 
+// export const QUERY_SINGLE_ROUND = gql`
+//     query getSingleRound($roundId: ID!) {
+//         round(roundId: $roundId) {
+//             _id
+//             season
+//             qualifiers {
+//                 _id
+//             }
+//         }
+//     }
+// `;
+
 export const QUERY_SINGLE_ROUND = gql`
-    query getSingleRound($roundId: ID!) {
-        round(roundId: $roundId) {
+    query getSingleRound($roundNo: Int!) {
+        round(roundNo: $roundNo) {
             _id
-            season
+            roundNo
+            season {
+                _id
+                year
+            }
             qualifiers {
+                _id
+                competitors {
+                    _id
+                    firstName
+                    lastName
+                    carNo
+                }
+            }
+            battles {
                 _id
             }
         }
