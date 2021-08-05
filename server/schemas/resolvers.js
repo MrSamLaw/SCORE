@@ -10,25 +10,17 @@ const resolvers = {
         round: async (parent, { roundNo }) => {
             return Round.findOne({ roundNo: roundNo });
         },
-        qualifier: async(parent, { round, competitor.carNo }) => {
-    const params = {};
+        qualifier: async (parent, args) => {
 
-    if (round) {
-        params.round = round;
-    }
-    if (competitor) {
-        params.competitor = competitor;
-    }
-
-    return await Qualifier.find(params).populate('round');
-},
+            return await Qualifier.find({}).populate('round').populate('competitors');
+        },
     },
-Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-        const user = await User.create({ username, email, password });
-        const token = signToken(user);
-        return { token, user };
-    },
+    Mutation: {
+        addUser: async (parent, { username, email, password }) => {
+            const user = await User.create({ username, email, password });
+            const token = signToken(user);
+            return { token, user };
+        },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
 
