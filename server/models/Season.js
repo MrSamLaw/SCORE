@@ -1,12 +1,19 @@
 const { Schema, model } = require('mongoose');
 
 const seasonSchema = new Schema({
-    round: {
-        type: Schema.Types.ObjectId,
-        ref: 'Round'
+    year: {
+        type: String,
+        required: true
     },
 
-    competitor: [
+    rounds: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Round'
+        }
+    ],
+
+    competitors: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Competitor'

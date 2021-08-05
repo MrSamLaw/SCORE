@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { Competitor } = require('../models');
+const { Competitor, Qualifier, Season, Round } = require('../models');
 
 db.once('open', async () => {
     await Competitor.deleteMany();
@@ -21,6 +21,35 @@ db.once('open', async () => {
     ]);
 
     console.log('competitors seeded');
+
+
+    await Qualifier.deleteMany();
+
+    const qualifiers = await Qualifier.insertMany([
+        {
+            qualOne: 0,
+            qualTwo: 0,
+            competitor: "610b82775f175c1c4ce25c06",
+        }
+    ]);
+
+    console.log('qualifiers seeded');
+
+    const season = await Season.insertMany([
+        {
+            year: 2021,
+        }
+    ]);
+
+    console.log('Season seeded');
+
+    const round = await Round.insertMany([
+        {
+            roundNo: 1
+        }
+    ]);
+
+    console.log('qualifiers seeded');
 
     //   await Product.deleteMany();
 

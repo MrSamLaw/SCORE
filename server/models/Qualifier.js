@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const qualifySchema = new Schema({
+const qualifierSchema = new Schema({
     qualOne: {
         type: Number,
         required: true,
@@ -11,15 +11,16 @@ const qualifySchema = new Schema({
     },
     competitor: {
         type: Schema.Types.ObjectId,
-        ref: 'Competitor'
+        ref: 'Competitor',
+        // required: true
     },
     round: {
         type: Schema.Types.ObjectId,
-        ref: 'Round'
-
+        ref: 'Round',
+        // required: true
     },
 });
 
-const Qualify = model('Qualify', qualifySchema);
+const Qualifier = model('Qualifier', qualifierSchema);
 
-module.exports = Qualify;
+module.exports = Qualifier;

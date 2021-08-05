@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Competitor } = require('../models');
+const { User, Competitor, Qualifier } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,13 +7,28 @@ const resolvers = {
         competitors: async (parent, args) => {
             return Competitor.find();
         },
-    },
-    Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
-            const token = signToken(user);
-            return { token, user };
+        round: async (parent, { roundNo }) => {
+            return Round.findOne({ roundNo: roundNo });
         },
+        qualifier: async(parent, { round, competitor.carNo }) => {
+    const params = {};
+
+    if (round) {
+        params.round = round;
+    }
+    if (competitor) {
+        params.competitor = competitor;
+    }
+
+    return await Qualifier.find(params).populate('round');
+},
+    },
+Mutation: {
+    addUser: async (parent, { username, email, password }) => {
+        const user = await User.create({ username, email, password });
+        const token = signToken(user);
+        return { token, user };
+    },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
 

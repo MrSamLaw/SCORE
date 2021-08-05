@@ -25,7 +25,7 @@ const battleSchema = new Schema({
     bracketLevel: {
         type: Number,
         required: true,
-        validate: "divisible by 4"
+        // validate: "divisible by 4"
     },
 });
 

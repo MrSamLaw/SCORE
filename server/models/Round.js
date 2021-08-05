@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const roundSchema = new Schema({
+    roundNo: {
+        type: Number,
+        required: true
+    },
     season: {
         type: Schema.Types.ObjectId,
         ref: 'Season'
