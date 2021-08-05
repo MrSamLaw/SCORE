@@ -13,7 +13,7 @@ const roundSchema = new Schema({
     qualifiers: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Qualify'
+            ref: 'Qualifier'
         }
     ],
     battles: [

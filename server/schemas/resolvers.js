@@ -38,6 +38,10 @@ const resolvers = {
 
             return { token, user };
         },
+        addRound: async (parent, { season, roundNo }) => {
+            const round = await Round.create({ season, roundNo });
+            return { round };
+        }
     },
 };
 

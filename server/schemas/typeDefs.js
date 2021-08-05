@@ -76,7 +76,8 @@ type Mutation {
     updateQualifier(_id:ID!, qualOne:Int!, qualTwo:Int!):Qualifier
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
-}
+    addRound(roundNo:Int!):Round
+    }
 `;
 
 module.exports = typeDefs;
