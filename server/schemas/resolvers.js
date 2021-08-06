@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Competitor, Qualifier } = require('../models');
+const { User, Competitor, Qualifier, Round } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -38,9 +38,14 @@ const resolvers = {
 
             return { token, user };
         },
-        addRound: async (parent, { season, roundNo }) => {
-            const round = await Round.create({ season, roundNo });
-            return { round };
+        addRound: async (parent, { roundNo }, context) => {
+            console.log(context);
+            // if (context.user) {
+            const round = new Round({ roundNo });
+
+            return round;
+            // }
+            // throw new AuthenticationError('Not logged in');
         }
     },
 };

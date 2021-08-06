@@ -29,23 +29,6 @@ export const ADD_ROUND = gql`
     addRound(roundNo: $roundNo) {
       _id
       roundNo
-      season {
-        _id
-        year
-      }
-      qualifiers {
-        _id
-        competitors {
-          _id
-          firstName
-          lastName
-          carNo
-        }
-      }
-      battles {
-        _id
-      }
-
     }
   }
 `;
