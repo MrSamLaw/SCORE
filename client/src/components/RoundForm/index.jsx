@@ -41,7 +41,7 @@ const RoundForm = () => {
     const { name, value } = event.target;
 
     if (name === "roundNo") {
-      setRoundNo(value);
+      setRoundNo(parseInt(value));
     }
   };
 

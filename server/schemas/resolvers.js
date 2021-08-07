@@ -42,7 +42,6 @@ const resolvers = {
             console.log(context);
             // if (context.user) {
             const round = new Round({ roundNo });
-
             return round;
             // }
             // throw new AuthenticationError('Not logged in');
