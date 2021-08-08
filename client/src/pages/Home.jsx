@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
 import "./home.scss";
 
 export default function Home() {
   return (
     <main className="sections">
-      Home Section
-      <div className="container"></div>
+      <div className="container">
+        <p>Welcome to SCORE!!!</p>
+        <p>Please login to admin your competition</p>
+
+        <Link to="/login">LOGIN</Link>
+      </div>
     </main>
   );
 }

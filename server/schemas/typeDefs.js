@@ -81,6 +81,8 @@ type Mutation {
     login(username: String!, password: String!): Auth
     addRound(roundNo:Int!):Round
     addSeason(year:String!, archived:Boolean):Season
+    addQualifier(competitor:ID, round:ID):Qualifier
+    addCompetitor(firstName: String!, lastName:String!,carNo:Int):Competitor
     }
 `;
 

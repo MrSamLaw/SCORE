@@ -15,11 +15,11 @@ const competitorSchema = new Schema({
         type: Number,
         required: true,
     },
-    class: {
-        type: String,
-        enum: ['Pro', 'ProAm'],
-        required: true,
-    }
+    // class: {
+    //     type: String,
+    //     enum: ['Pro', 'ProAm'],
+    //     required: true,
+    // }
 });
 
 const Competitor = model('Competitor', competitorSchema);

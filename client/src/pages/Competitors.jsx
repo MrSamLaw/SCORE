@@ -1,5 +1,7 @@
 import { useQuery } from "@apollo/client";
+import CompetitorForm from "../components/CompetitorForm";
 import CompetitorList from "../components/CompetitorList";
+import PageTitle from "../components/PageTitle/PageTitle";
 import { QUERY_COMPETITORS } from "../utils/queries";
 import "./home.scss";
 
@@ -9,7 +11,7 @@ export default function Competitors() {
 
   return (
     <main className="sections">
-      Competitors Section
+      <PageTitle heading="COMPETITORS" />
       <div className="container">
         {loading ? (
           <div>Loading...</div>
@@ -17,6 +19,8 @@ export default function Competitors() {
           <CompetitorList competitors={competitors} />
         )}
       </div>
+      <div>Add Competitor</div>
+      <CompetitorForm />
     </main>
   );
 }

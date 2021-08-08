@@ -32,3 +32,14 @@ export const ADD_ROUND = gql`
     }
   }
 `;
+
+export const ADD_COMPETITOR = gql`
+  mutation addCompetitor($firstName: String!, $lastName:String!, $carNo:Int) {
+    addCompetitor(firstName: $firstName, lastName:$lastName,carNo:$carNo) {
+      _id
+      firstName
+      lastName
+      carNo
+    }
+  }
+`;

@@ -17,6 +17,12 @@ export default function SingleRound() {
       <h3>
         Round {round.roundNo} of the {round.season} Season
       </h3>
+
+      <section>
+        <h5>Edit Round details</h5>
+
+        <h5>Qualifying</h5>
+      </section>
     </div>
   );
 }

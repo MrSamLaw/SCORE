@@ -64,6 +64,17 @@ const resolvers = {
             // }
             // throw new AuthenticationError('Not logged in');
         },
+        addQualifier: async (parent, { competitor, round }) => {
+            // return await Qualifier.create({  });
+            const qualifier = new Qualifier()
+        },
+        addCompetitor: async (parent, { lastName, firstName, carNo }, context) => {
+
+            // if (context.user) {
+            return await Competitor.create({ lastName, firstName, carNo });
+            // }
+            // throw new AuthenticationError('Not logged in');
+        },
     },
 };
 

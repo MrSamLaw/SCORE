@@ -1,5 +1,5 @@
 import "./qualifyList.scss";
-
+import "../../form.scss";
 const QualifyList = ({ qualifiers, qualOne, qualTwo, competitor, round }) => {
   // console.log(qualifiers);
   // if (!qualifiers.length) {

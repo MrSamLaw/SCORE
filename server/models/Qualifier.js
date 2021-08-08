@@ -4,10 +4,12 @@ const qualifierSchema = new Schema({
     qualOne: {
         type: Number,
         required: true,
+        default: 0
     },
     qualTwo: {
         type: Number,
         required: true,
+        default: 0
     },
     competitor: {
         type: Schema.Types.ObjectId,
