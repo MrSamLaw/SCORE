@@ -24,6 +24,9 @@ export default function Nav() {
           {Auth.loggedIn() ? (
             <ul>
               <li>
+                <Link to="/seasons">Seasons</Link>
+              </li>
+              <li>
                 <Link to="/round">Round</Link>
               </li>
               <li>

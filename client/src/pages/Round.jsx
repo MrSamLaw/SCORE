@@ -3,21 +3,19 @@ import "./round.scss";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import CompetitorList from "../components/CompetitorList";
-import { QUERY_COMPETITORS } from "../utils/queries";
+import { QUERY_COMPETITORS, QUERY_ROUNDS } from "../utils/queries";
 import QualifyList from "../components/QualifyList";
 import RoundForm from "../components/RoundForm";
+import RoundList from "../components/RoundList";
 
 export default function Round() {
-  const [currentSection, setCurrentSection] = useState("Competitors");
-  const { data } = useQuery(QUERY_COMPETITORS);
-  const competitors = data?.competitors || [];
-
-  //   const { data2 } = useQuery(QUERY_QUALIFY);
-  //   const qualifiers = data2?.qualifiers || [];
+  const [currentSection, setCurrentSection] = useState("");
+  const { data } = useQuery(QUERY_ROUNDS);
+  const rounds = data?.rounds || [];
 
   const renderSection = () => {
     if (currentSection === "Competitors") {
-      return <CompetitorList competitors={competitors} />;
+      return <CompetitorList />;
     }
     if (currentSection === "Qualifying") {
       //   console.log("Qualifying");
@@ -33,6 +31,7 @@ export default function Round() {
   return (
     <main>
       Round Section
+      <RoundList rounds={rounds} />
       <RoundForm />
       <div className="sectionNav">
         <ul>

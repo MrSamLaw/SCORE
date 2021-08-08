@@ -1,5 +1,19 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_SEASONS = gql`
+query getSeasons {
+    seasons{
+        _id
+        year
+        archived
+        rounds {
+            _id
+            roundNo
+        }
+    }
+}
+`;
+
 export const QUERY_COMPETITORS = gql`
     query getCompetitors {
         competitors {
@@ -12,21 +26,18 @@ export const QUERY_COMPETITORS = gql`
     }
 `;
 
-// export const QUERY_SINGLE_ROUND = gql`
-//     query getSingleRound($roundId: ID!) {
-//         round(roundId: $roundId) {
-//             _id
-//             season
-//             qualifiers {
-//                 _id
-//             }
-//         }
-//     }
-// `;
+export const QUERY_ROUNDS = gql`
+    query getRounds {
+        rounds {
+            _id
+            roundNo
+        }
+    }
+`;
 
 export const QUERY_SINGLE_ROUND = gql`
-    query getSingleRound($roundNo: Int!) {
-        round(roundNo: $roundNo) {
+    query getSingleRound($roundId: ID!) {
+        round(roundId: $roundId) {
             _id
             roundNo
             season {
@@ -35,12 +46,12 @@ export const QUERY_SINGLE_ROUND = gql`
             }
             qualifiers {
                 _id
-                competitors {
-                    _id
-                    firstName
-                    lastName
-                    carNo
-                }
+            #     competitors {
+            #         _id
+            #         firstName
+            #         lastName
+            #         carNo
+            #     }
             }
             battles {
                 _id
