@@ -1,19 +1,31 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Competitor, Qualifier, Round } = require('../models');
+const { User, Competitor, Qualifier, Round, Thought, Season } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+
+        seasons: async () => {
+            return await Season.find();
+        },
         competitors: async (parent, args) => {
             return Competitor.find();
         },
-        round: async (parent, { roundNo }) => {
-            return Round.findOne({ roundNo: roundNo });
+        rounds: async (parent, args) => {
+            return Round.find();
+        },
+        round: async (parent, { roundId }) => {
+            return Round.findOne({ _id: roundId });
+            // .populate('qualifiers').populate({
+            //     path: 'qualfiers',
+            //     populate: 'competitor'
+            // });
         },
         qualifier: async (parent, args) => {
 
             return await Qualifier.find({}).populate('round').populate('competitors');
         },
+
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -38,14 +50,20 @@ const resolvers = {
 
             return { token, user };
         },
-        addRound: async (parent, { roundNo }, context) => {
-            console.log(context);
+        addSeason: async (parent, { year, archived }, context) => {
+
             // if (context.user) {
-            const round = new Round({ roundNo });
-            return round;
+            return Season.create({ year, archived });
             // }
             // throw new AuthenticationError('Not logged in');
-        }
+        },
+        addRound: async (parent, { roundNo }, context) => {
+
+            // if (context.user) {
+            return Round.create({ roundNo });
+            // }
+            // throw new AuthenticationError('Not logged in');
+        },
     },
 };
 

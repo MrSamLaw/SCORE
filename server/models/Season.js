@@ -5,7 +5,11 @@ const seasonSchema = new Schema({
         type: String,
         required: true
     },
-
+    archived: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     rounds: [
         {
             type: Schema.Types.ObjectId,

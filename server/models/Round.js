@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const roundSchema = new Schema({
     roundNo: {
         type: Number,
-        required: true
+        required: true,
+        unique: true,
     },
     season: {
         type: Schema.Types.ObjectId,
@@ -21,7 +22,7 @@ const roundSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Battle'
         }
-    ]
+    ],
 });
 
 const Round = model('Round', roundSchema);

@@ -51,6 +51,7 @@ type Round {
 type Season {
     _id:ID!
     year: String!
+    archived: Boolean!
     rounds:[Round]
     competitors:[Competitor]
 }
@@ -67,7 +68,9 @@ enum BracketSide {
 
 type Query {
     users:[User]!
+    seasons:[Season]!
     competitors:[Competitor]!
+    rounds: [Round]!
     round(roundId:ID!):Round
     qualifier:Qualifier
 }
@@ -77,6 +80,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
     addRound(roundNo:Int!):Round
+    addSeason(year:String!, archived:Boolean):Season
     }
 `;
 
