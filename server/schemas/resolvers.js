@@ -25,12 +25,14 @@ const resolvers = {
         qualifiers: async (parent, args) => {
             return await Qualifier.find({}).populate('round').populate('competitors');
         },
+
         roundQualifiers: async (parent, { roundId }) => {
             console.log(roundId);
-            return Qualifier.find({ _id: roundId }).populate('qualifiers').populate({
-                path: 'qualfiers',
-                populate: 'competitor'
-            });
+            return Round.find({});
+            // .populate('qualifiers').populate({
+            //     path: 'qualfiers',
+            //     populate: 'competitor'
+            // });
         },
 
         me: async (parent, args, context) => {

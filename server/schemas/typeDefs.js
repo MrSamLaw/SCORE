@@ -72,7 +72,7 @@ type Query {
     competitors:[Competitor]!
     rounds: [Round]!
     round(roundId:ID!):Round
-    roundQualifiers(roundId:ID!):[Qualifier]
+    roundQualifiers(roundId:ID!):Round
     qualifiers:[Qualifier]!
     me: User
 }
