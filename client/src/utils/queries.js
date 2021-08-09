@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_ME = gql`
+query me {
+    me{
+        _id
+        username
+    }
+}
+`;
 export const QUERY_SEASONS = gql`
 query getSeasons {
     seasons{
@@ -31,6 +39,10 @@ export const QUERY_ROUNDS = gql`
         rounds {
             _id
             roundNo
+            season {
+                _id
+                year
+            }
         }
     }
 `;
@@ -40,10 +52,10 @@ export const QUERY_SINGLE_ROUND = gql`
         round(roundId: $roundId) {
             _id
             roundNo
-            season {
-                _id
-                year
-            }
+            # season {
+            #     _id
+            #     year
+            # }
             qualifiers {
                 _id
             #     competitors {
@@ -55,6 +67,26 @@ export const QUERY_SINGLE_ROUND = gql`
             }
             battles {
                 _id
+            }
+        }
+    }
+`;
+
+export const QUERY_ROUND_QUALIFIERS = gql`
+    query getRoundQualifiers($roundId:ID!){
+        roundQualifiers(roundId:$roundId) {
+            _id
+            qualOne
+            qualTwo
+            competitor {
+                _id
+                firstName
+                lastName
+                carNo
+            }
+            round {
+                _id
+                roundNo
             }
         }
     }

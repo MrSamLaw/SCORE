@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 
 export const ADD_ROUND = gql`
   mutation addRound($roundNo: Int!) {
-    addRound(roundNo: $roundNo) {
+    addRound(roundNo: $roundNo, seasonId:$_id) {
       _id
       roundNo
     }
