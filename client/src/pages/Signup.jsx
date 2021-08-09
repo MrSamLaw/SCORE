@@ -6,7 +6,7 @@ import { ADD_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 import "../form.scss";
-import PageTitle from "../components/PageTitle/PageTitle";
+import PageTitle from "../components/PageTitle";
 const Signup = () => {
   const [formState, setFormState] = useState({
     username: "",

@@ -3,15 +3,16 @@ import { useState } from "react";
 import auth from "../../utils/auth";
 
 import { ADD_ROUND } from "../../utils/mutations";
-import { QUERY_SEASONS } from "../../utils/queries";
+import { QUERY_COMPETITORS, QUERY_SEASONS } from "../../utils/queries";
 
 const RoundForm = () => {
   const [roundNo, setRoundNo] = useState("");
   const [seasonYear, setSeasonYear] = useState("");
   const [addRound] = useMutation(ADD_ROUND);
-  const { data } = useQuery(QUERY_SEASONS);
-  const seasons = data?.seasons || [];
-
+  const { data: seasonsData } = useQuery(QUERY_SEASONS);
+  const { data: compData } = useQuery(QUERY_COMPETITORS);
+  const seasons = seasonsData?.seasons || [];
+  const competitors = compData?.competitors || [];
   //   update(cache, { data: { addRound } }) {
   //     try {
   //       // const { round } = cache.readQuery({ query: QUERY_SINGLE_ROUND });
@@ -27,18 +28,19 @@ const RoundForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      addRound({
-        //const { data } = await
-        variables: {
-          roundNo,
-        },
-      });
-      setRoundNo("");
-    } catch (err) {
-      console.error(err);
-    }
+    console.log(seasonYear);
+    // try {
+    //   addRound({
+    //     //const { data } = await
+    //     variables: {
+    //       roundNo,
+    //       seasonYear,
+    //     },
+    //   });
+    //   setRoundNo("");
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   const handleChange = (event) => {
@@ -64,14 +66,18 @@ const RoundForm = () => {
         <form onSubmit={handleFormSubmit}>
           <input
             name="roundNo"
-            placeholder="Add a Round"
+            placeholder="Round Number"
             value={roundNo}
             onChange={handleChange}
           ></input>
 
           <select name="seasonYear" onChange={handleSeasonChange}>
             {seasons.map((season) => (
-              <option key={season._id} value={season.year}>
+              <option
+                key={season._id}
+                value={season._id}
+                defaultValue={{ value: season._id }}
+              >
                 {season.year}
               </option>
             ))}

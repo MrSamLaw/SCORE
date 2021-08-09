@@ -23,9 +23,9 @@ export default function Nav() {
         <div className="right">
           {Auth.loggedIn() ? (
             <ul>
-              <li>
+              {/* <li>
                 <Link to="/seasons">Seasons</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/round">Round</Link>
               </li>

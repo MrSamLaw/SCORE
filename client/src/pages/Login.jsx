@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-import PageTitle from "../components/PageTitle/PageTitle";
+import PageTitle from "../components/PageTitle";
 
 import "../form.scss";
 const Login = (props) => {

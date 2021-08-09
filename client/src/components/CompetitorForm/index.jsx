@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { ADD_COMPETITOR } from "../../utils/mutations";
+import SubTitle from "../SubTitle";
 
 export default function CompetitorForm() {
   const [firstName, setFirstName] = useState("");
@@ -31,7 +32,7 @@ export default function CompetitorForm() {
     <div>
       {/* {auth.loggedIn() ? ( */}
       <div>
-        <h3>Register a Competitor</h3>
+        <SubTitle heading="Register a Competitor" />
         <form onSubmit={handleFormSubmit}>
           <input
             name="firstName"

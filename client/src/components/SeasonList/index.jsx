@@ -1,12 +1,13 @@
+import PageTitle from "../PageTitle";
+
 const SeasonList = ({ seasons, current }) => {
-  console.log(current);
   if (!seasons.length) {
     return <h4>No season available</h4>;
   }
 
   return (
     <div>
-      <p>Seasons</p>
+      <PageTitle heading="seasons" />
       {seasons &&
         seasons
           .filter((seasons) => seasons.archived === current)

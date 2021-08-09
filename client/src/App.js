@@ -52,9 +52,9 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/seasons">
+            {/* <Route exact path="/seasons">
               <Seasons />
-            </Route>
+            </Route> */}
             <Route exact path="/round">
               <Round />
             </Route>

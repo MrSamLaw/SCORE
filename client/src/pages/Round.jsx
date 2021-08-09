@@ -3,27 +3,35 @@ import "./round.scss";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import CompetitorList from "../components/CompetitorList";
-import { QUERY_COMPETITORS, QUERY_ROUNDS } from "../utils/queries";
+import {
+  QUERY_COMPETITORS,
+  QUERY_ROUND_QUALIFIERS,
+  QUERY_ROUNDS,
+} from "../utils/queries";
 import QualifyList from "../components/QualifyList";
 import RoundForm from "../components/RoundForm";
 import RoundList from "../components/RoundList";
 
 export default function Round() {
   const [currentSection, setCurrentSection] = useState("");
-  const { data } = useQuery(QUERY_ROUNDS);
-  const rounds = data?.rounds || [];
+  const { data: compData } = useQuery(QUERY_COMPETITORS);
+  const { data: roundsData } = useQuery(QUERY_ROUNDS);
+  const { data: qualifyData } = useQuery(QUERY_ROUND_QUALIFIERS);
+  const competitors = compData?.competitors || [];
+  const rounds = roundsData?.rounds || [];
+  const qualifiers = qualifyData?.qualifiers || [];
 
   const renderSection = () => {
     if (currentSection === "Competitors") {
-      return <CompetitorList />;
+      return <CompetitorList competitors={competitors} />;
     }
     if (currentSection === "Qualifying") {
-      //   console.log("Qualifying");
-      return <QualifyList />; // qualifiers={qualifiers}
+      console.log(qualifyData);
+      return <QualifyList qualifiers={qualifiers} />;
     }
-    if (currentSection === "Battles") {
-      console.log("Battles"); //   return <Battles />;
-    }
+    // if (currentSection === "Battles") {
+    //   console.log("Battles"); //   return <Battles />;
+    // }
   };
 
   const handleSectionChange = (section) => setCurrentSection(section);
@@ -33,6 +41,7 @@ export default function Round() {
       Round Section
       <RoundList rounds={rounds} />
       <RoundForm />
+      <hr />
       <div className="sectionNav">
         <ul>
           <li
@@ -47,12 +56,12 @@ export default function Round() {
           >
             Qualifying
           </li>
-          <li
+          {/* <li
             className={"Battles" ? "section-link active" : "section-link"}
             onClick={() => handleSectionChange("Battles")}
           >
             Battles
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="roundSections">{renderSection()}</div>

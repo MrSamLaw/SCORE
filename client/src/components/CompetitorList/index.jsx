@@ -1,6 +1,6 @@
 import "./competitorlist.scss";
 
-const CompetitorList = ({ competitors, firstName, lastName, carNo }) => {
+const CompetitorList = ({ competitors }) => {
   if (!competitors.length) {
     return <h3>No Registered Competitors Yet</h3>;
   }
