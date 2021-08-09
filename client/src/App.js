@@ -14,7 +14,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 import Home from './pages/Home';
-import Seasons from './pages/Seasons'
+// import Seasons from './pages/Seasons'
 import Round from './pages/Round'
 import SingleRound from "./pages/SingleRound";
 import Competitors from "./pages/Competitors";

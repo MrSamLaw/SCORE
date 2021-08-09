@@ -29,6 +29,9 @@ export const ADD_ROUND = gql`
     addRound(roundNo: $roundNo, seasonId:$_id) {
       _id
       roundNo
+      season {
+        _id
+      }
     }
   }
 `;

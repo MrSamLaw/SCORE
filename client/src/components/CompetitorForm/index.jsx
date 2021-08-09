@@ -9,9 +9,9 @@ export default function CompetitorForm() {
   const [carNo, setCarNo] = useState("");
   const [addCompetitor] = useMutation(ADD_COMPETITOR);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-  };
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  // };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
