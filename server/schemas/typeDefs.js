@@ -28,7 +28,7 @@ type Qualifier {
     qualOne: Float!
     qualTwo: Float!
     competitor: Competitor!
-    round:Round!
+    round:Round
 }
 
 type Battle {
@@ -43,7 +43,7 @@ type Battle {
 type Round {
     _id:ID!
     roundNo: Int!
-    season: Season
+    season: Season!
     qualifiers: [Qualifier]
     battles:[Battle]
 }
@@ -73,13 +73,14 @@ type Query {
     rounds: [Round]!
     round(roundId:ID!):Round
     qualifier:Qualifier
+    me: User
 }
 
 type Mutation {
     updateQualifier(_id:ID!, qualOne:Int!, qualTwo:Int!):Qualifier
     addUser(username: String!, email: String!, password: String!): Auth
     login(username: String!, password: String!): Auth
-    addRound(roundNo:Int!):Round
+    addRound(roundNo:Int!, seasonId:ID!):Round
     addSeason(year:String!, archived:Boolean):Season
     addQualifier(competitor:ID, round:ID):Qualifier
     addCompetitor(firstName: String!, lastName:String!,carNo:Int):Competitor

@@ -25,7 +25,12 @@ const resolvers = {
 
             return await Qualifier.find({}).populate('round').populate('competitors');
         },
-
+        me: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id })
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -57,16 +62,17 @@ const resolvers = {
             // }
             // throw new AuthenticationError('Not logged in');
         },
-        addRound: async (parent, { roundNo }, context) => {
-
+        addRound: async (parent, { roundNo, seasonId }, context) => {
+            console.log(seasonId);
             // if (context.user) {
-            return Round.create({ roundNo });
+            return Round.create({ roundNo, seasonId });
             // }
             // throw new AuthenticationError('Not logged in');
         },
-        addQualifier: async (parent, { competitor, round }) => {
-            // return await Qualifier.create({  });
-            const qualifier = new Qualifier()
+        addQualifier: async (parent, { competitorId, roundId }) => {
+            return await Qualifier.create({ competitorId, roundId });
+            // const qualifier = new Qualifier(competitorId, roundId);
+            // return qualifier;
         },
         addCompetitor: async (parent, { lastName, firstName, carNo }, context) => {
 
@@ -76,6 +82,19 @@ const resolvers = {
             // throw new AuthenticationError('Not logged in');
         },
     },
+    Qualifier: {
+        competitor: async (parent) => {
+            return await Competitor.findOne({ _id: parent.competitor });
+        }
+        // round: async (parent) => {
+        //     return await Round.findOne({ _id: parent.round });
+        // },
+    },
+    Round: {
+        season: async (parent) => {
+            return await Season.findOne({ _id: parent.season });
+        }
+    }
 };
 
 module.exports = resolvers;
