@@ -1,15 +1,12 @@
-.pageTitle {
+.subTitle {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 25px 0;
   text-transform: uppercase;
-  hr {
-    flex-direction: column;
-    margin: 10px;
-  }
-  h1 {
-    height: 40px;
+  margin-top: 1.5em;
+  h4 {
+    height: 25px;
     border-bottom: 0.5px solid;
     border-image-slice: 1;
     border-image-source: linear-gradient(
