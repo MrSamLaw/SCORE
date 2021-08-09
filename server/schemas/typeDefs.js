@@ -86,7 +86,8 @@ type Mutation {
     addQualifier(competitor:ID, round:ID):Qualifier
     addRound(roundNo:Int!, season:ID):Round
     addCompetitor(firstName: String!, lastName:String!,carNo:Int):Competitor
-    }
+    # addToRound(roundId:ID!, competitor:ID!):Round
+    } 
 `;
 
 module.exports = typeDefs;

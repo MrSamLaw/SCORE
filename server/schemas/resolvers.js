@@ -27,11 +27,10 @@ const resolvers = {
         },
         roundQualifiers: async (parent, { roundId }) => {
             console.log(roundId);
-            return Qualifier.findOne({ _id: roundId });
-            // .populate('qualifiers').populate({
-            //     path: 'qualfiers',
-            //     populate: 'competitor'
-            // });
+            return Qualifier.find({ _id: roundId }).populate('qualifiers').populate({
+                path: 'qualfiers',
+                populate: 'competitor'
+            });
         },
 
         me: async (parent, args, context) => {
@@ -90,6 +89,7 @@ const resolvers = {
             // }
             // throw new AuthenticationError('Not logged in');
         },
+
     },
     Qualifier: {
         competitor: async (parent) => {
