@@ -12,19 +12,28 @@ const resolvers = {
             return Competitor.find();
         },
         rounds: async (parent, args) => {
-            return Round.find();
+            return Round.find().populate('season');
         },
         round: async (parent, { roundId }) => {
+            console.log(roundId);
             return Round.findOne({ _id: roundId });
             // .populate('qualifiers').populate({
             //     path: 'qualfiers',
             //     populate: 'competitor'
             // });
         },
-        qualifier: async (parent, args) => {
-
+        qualifiers: async (parent, args) => {
             return await Qualifier.find({}).populate('round').populate('competitors');
         },
+        roundQualifiers: async (parent, { roundId }) => {
+            console.log(roundId);
+            return Qualifier.findOne({ _id: roundId });
+            // .populate('qualifiers').populate({
+            //     path: 'qualfiers',
+            //     populate: 'competitor'
+            // });
+        },
+
         me: async (parent, args, context) => {
             if (context.user) {
                 return User.findOne({ _id: context.user._id })
@@ -62,15 +71,15 @@ const resolvers = {
             // }
             // throw new AuthenticationError('Not logged in');
         },
-        addRound: async (parent, { roundNo, seasonId }, context) => {
-            console.log(seasonId);
+        addRound: async (parent, { roundNo, season }, context) => {
+            console.log(season);
             // if (context.user) {
-            return Round.create({ roundNo, seasonId });
+            return await Round.create({ roundNo, season: season });
             // }
             // throw new AuthenticationError('Not logged in');
         },
-        addQualifier: async (parent, { competitorId, roundId }) => {
-            return await Qualifier.create({ competitorId, roundId });
+        addQualifier: async (parent, { competitor, round }) => {
+            return await Qualifier.create({ competitor: competitor, round: round });
             // const qualifier = new Qualifier(competitorId, roundId);
             // return qualifier;
         },
@@ -85,10 +94,10 @@ const resolvers = {
     Qualifier: {
         competitor: async (parent) => {
             return await Competitor.findOne({ _id: parent.competitor });
-        }
-        // round: async (parent) => {
-        //     return await Round.findOne({ _id: parent.round });
-        // },
+        },
+        round: async (parent) => {
+            return await Round.findOne({ _id: parent.round });
+        },
     },
     Round: {
         season: async (parent) => {

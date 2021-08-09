@@ -4,11 +4,10 @@ const roundSchema = new Schema({
     roundNo: {
         type: Number,
         required: true,
-        unique: true,
     },
     season: {
         type: Schema.Types.ObjectId,
-        ref: 'Season'
+        ref: 'Season',
     },
 
     qualifiers: [
