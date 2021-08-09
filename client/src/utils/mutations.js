@@ -46,3 +46,12 @@ export const ADD_COMPETITOR = gql`
     }
   }
 `;
+
+export const ADD_QUALIFIER = gql`
+  mutation addQualifier($competitor:ID, $round:ID){
+    addQualifier(competitor:$competitor, round:$round){
+      _id
+    }
+    
+  }
+`;

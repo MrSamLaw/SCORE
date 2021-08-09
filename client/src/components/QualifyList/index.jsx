@@ -1,7 +1,7 @@
 import "./qualifyList.scss";
 import "../../form.scss";
 const QualifyList = ({ qualifiers, qualOne, qualTwo, competitor, round }) => {
-  console.log(qualifiers);
+  // console.log(qualifiers);
   if (!qualifiers.length) {
     return <h3>No Competitors are entered in this round</h3>;
   }

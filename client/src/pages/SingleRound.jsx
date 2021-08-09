@@ -24,13 +24,19 @@ const SingleRound = () => {
   });
 
   const round = data?.round || {};
-
+  // console.log(round);
   const renderSection = () => {
     if (currentSection === "Competitors") {
-      return <AddToRound competitors={competitors} competing={round} />;
+      return (
+        <AddToRound
+          competitors={competitors}
+          competing={round}
+          roundId={roundId}
+        />
+      );
     }
     if (currentSection === "Qualifying") {
-      console.log(qualifyData);
+      // console.log(qualifyData);
       return <QualifyList qualifiers={qualifiers} />;
     }
     // if (currentSection === "Battles") {
