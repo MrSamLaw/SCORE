@@ -16,23 +16,22 @@ const resolvers = {
         },
         round: async (parent, { roundId }) => {
             console.log(roundId);
-            return Round.findOne({ _id: roundId });
-            // .populate('qualifiers').populate({
-            //     path: 'qualfiers',
-            //     populate: 'competitor'
-            // });
+            return Round.findOne({ _id: roundId })
+                .populate('qualifiers').populate({
+                    path: 'qualfiers',
+                    populate: 'competitor'
+                });
         },
         qualifiers: async (parent, args) => {
             return await Qualifier.find({}).populate('round').populate('competitors');
         },
 
         roundQualifiers: async (parent, { roundId }) => {
-            console.log(roundId);
-            return Round.find({});
-            // .populate('qualifiers').populate({
-            //     path: 'qualfiers',
-            //     populate: 'competitor'
-            // });
+            return Round.findOne({ _id: roundId })
+                .populate('qualifiers').populate({
+                    path: 'qualfiers',
+                    populate: 'competitor'
+                });
         },
 
         me: async (parent, args, context) => {
@@ -91,7 +90,12 @@ const resolvers = {
             // }
             // throw new AuthenticationError('Not logged in');
         },
+        addRoundQualifiers: async (parent, { roundId, qualifiers }, context) => {
+            console.log(roundId);
 
+            return await Round.findByIdAndUpdate(
+                roundId, { $push: { qualifiers: qualifiers } });
+        },
     },
     Qualifier: {
         competitor: async (parent) => {

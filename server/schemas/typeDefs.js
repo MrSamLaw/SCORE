@@ -87,6 +87,7 @@ type Mutation {
     addRound(roundNo:Int!, season:ID):Round
     addCompetitor(firstName: String!, lastName:String!,carNo:Int):Competitor
     # addToRound(roundId:ID!, competitor:ID!):Round
+    addRoundQualifiers(roundId:ID, qualifiers:[ID]):Round
     } 
 `;
 
