@@ -19,7 +19,7 @@ const SingleRound = () => {
 
   const qualifiers = qualifyData?.roundQualifiers.qualifiers || [];
   // console.log(qualifiers);
-  const { data } = useQuery(QUERY_SINGLE_ROUND, {
+  const { loading, data } = useQuery(QUERY_SINGLE_ROUND, {
     variables: { roundId: roundId },
   });
 
@@ -30,7 +30,7 @@ const SingleRound = () => {
       return <AddToRound competing={round} roundId={roundId} />;
     }
     if (currentSection === "Qualifying") {
-      console.log(qualifyData);
+      // console.log(qualifyData);
       return <QualifyList qualifiers={qualifiers} />;
     }
     // if (currentSection === "Battles") {
@@ -39,11 +39,15 @@ const SingleRound = () => {
   };
 
   const handleSectionChange = (section) => setCurrentSection(section);
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <PageTitle heading="Round" />
-
+      <p className="wrapper">
+        Round {round.roundNo} of the {round.season.year} Season
+      </p>
       <div className="sectionNav">
         <ul>
           <li
@@ -68,9 +72,9 @@ const SingleRound = () => {
       </div>
       <div className="roundSections">{renderSection()}</div>
 
-      <section>
+      {/* <section>
         <SubTitle heading="Edit Round details" />
-      </section>
+      </section> */}
     </div>
   );
 };

@@ -6,11 +6,13 @@ const RoundList = ({ rounds }) => {
     return <h3>No Rounds for this season yet</h3>;
   }
   return (
-    <div>
+    <div className="wrapper">
       {rounds &&
         rounds.map((round) => (
           <div key={round._id}>
-            <Link to={`/round/${round._id}`}>Round {round.roundNo}</Link>
+            <p>
+              <Link to={`/round/${round._id}`}>Round {round.roundNo}</Link>
+            </p>
           </div>
         ))}
     </div>

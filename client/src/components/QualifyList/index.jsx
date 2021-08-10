@@ -1,5 +1,6 @@
-import "./qualifyList.scss";
 import "../../form.scss";
+import "./qualifyList.scss";
+
 import { useQuery } from "@apollo/client";
 import { QUERY_ROUND_QUALIFIERS } from "../../utils/queries";
 import { useParams } from "react-router-dom";
@@ -17,16 +18,21 @@ const QualifyList = () => {
     setQualifiers(data?.roundQualifiers.qualifiers);
   }, [data?.roundQualifiers.qualifiers]);
 
-  console.log(qualifiers);
+  // console.log(qualifiers);
   // if (!qualifiers.length)
   //   return <h3>No Competitors are entered in this round</h3>;
+
+  const L1Click = async (event) => {
+    event.preventDefault();
+    console.log("L1Click");
+  };
+
+  const L2Click = async (event) => {
+    event.preventDefault();
+    console.log("L2Click");
+  };
   return (
     <div>
-      <button>CLOSE QUALIFYING</button>
-      <p>
-        Allows qualifying to be finalised. Any drivers who haven't completed
-        qualifying will receive null scores and be removed from round.
-      </p>
       {qualifiers &&
         qualifiers.map((qualifier) => (
           <div key={qualifier._id} className="card">
@@ -38,16 +44,16 @@ const QualifyList = () => {
               <p>{qualifier.competitor.lastName}</p>
             </div>
             <div className="qScores">
-              <form>
+              <form onSubmit={L1Click}>
                 <label>Lap 1</label>
                 <input></input>
                 <button type="submit">Confirm</button>
                 {/* Submits qualOne Score  */}
               </form>
-              <form>
+              <form onSubmit={L2Click}>
                 <label>Lap 2</label>
                 <input></input>
-                <button type="submit">Confirm</button>{" "}
+                <button type="submit">Confirm</button>
                 {/* Submits qualTwo Score  */}
               </form>
             </div>
@@ -59,7 +65,7 @@ const QualifyList = () => {
           for judges input, ordered by Marble # (Marble still not configured in
           models) 2 Onclick buttons? onClick takes parameters
         </p>
-        <div className="card">
+        {/* <div className="card">
           <div className="left">
             <p className="carNo">carNo</p>
           </div>
@@ -72,16 +78,24 @@ const QualifyList = () => {
               <label>Lap 1</label>
               <input></input>
               <button type="submit">Confirm</button>
-              {/* Submits qualOne Score  */}
+              Submits qualOne Score 
             </form>
             <form>
               <label>Lap 2</label>
               <input></input>
               <button type="submit">Confirm</button>{" "}
-              {/* Submits qualTwo Score  */}
+              Submits qualTwo Score 
             </form>
           </div>
-        </div>
+        </div> */}
+      </div>
+      <hr />
+      <div className="wrapper">
+        <button>CLOSE QUALIFYING</button>
+        <p>
+          Allows qualifying to be finalised. Any drivers who haven't completed
+          qualifying will receive null scores and be removed from round.
+        </p>
       </div>
       <hr />
       <section>

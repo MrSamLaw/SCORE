@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 // import auth from "../../utils/auth";
-
+import SubTitle from "../SubTitle";
 import { ADD_ROUND } from "../../utils/mutations";
 import { QUERY_SEASONS } from "../../utils/queries";
 
@@ -62,7 +62,7 @@ const RoundForm = () => {
     <div>
       {/* {auth.loggedIn() ? ( */}
       <div>
-        <h3>Add a Round</h3>
+        <SubTitle heading="Add a Round" />
         <form onSubmit={handleFormSubmit}>
           <input
             name="roundNo"

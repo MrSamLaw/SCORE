@@ -18,7 +18,9 @@ export default function Home() {
             <p>Welcome to SCORE!!!</p>
             <p>Please login to admin your competition</p>
 
-            <Link to="/login">LOGIN</Link>
+            <p>
+              <Link to="/login">LOGIN</Link>
+            </p>
           </div>
         )}
       </div>

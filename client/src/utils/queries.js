@@ -52,10 +52,10 @@ export const QUERY_SINGLE_ROUND = gql`
         round(roundId: $roundId) {
             _id
             roundNo
-            # season {
-            #     _id
-            #     year
-            # }
+            season {
+                _id
+                year
+            }
             qualifiers {
                 _id
             #     competitors {
