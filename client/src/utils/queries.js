@@ -76,17 +76,15 @@ export const QUERY_ROUND_QUALIFIERS = gql`
     query getRoundQualifiers($roundId:ID!){
         roundQualifiers(roundId:$roundId) {
             _id
-            qualOne
-            qualTwo
-            competitor {
+            roundNo
+            qualifiers{
                 _id
-                firstName
-                lastName
-                carNo
-            }
-            round {
-                _id
-                roundNo
+                competitor {
+                    _id
+                    firstName
+                    lastName
+                    carNo
+                }
             }
         }
     }

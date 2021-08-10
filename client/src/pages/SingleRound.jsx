@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { QUERY_COMPETITORS } from "../utils/queries";
+
 import { QUERY_ROUND_QUALIFIERS } from "../utils/queries";
 import { QUERY_SINGLE_ROUND } from "../utils/queries";
 import PageTitle from "../components/PageTitle";
@@ -13,12 +13,12 @@ const SingleRound = () => {
   const [currentSection, setCurrentSection] = useState("");
   const { roundId } = useParams();
 
-  const { data: compData } = useQuery(QUERY_COMPETITORS);
+  const { data: qualifyData } = useQuery(QUERY_ROUND_QUALIFIERS, {
+    variables: { roundId: roundId },
+  });
 
-  const { data: qualifyData } = useQuery(QUERY_ROUND_QUALIFIERS);
-  const competitors = compData?.competitors || [];
-  const qualifiers = qualifyData?.qualifiers || [];
-
+  const qualifiers = qualifyData?.roundQualifiers.qualifiers || [];
+  // console.log(qualifiers);
   const { data } = useQuery(QUERY_SINGLE_ROUND, {
     variables: { roundId: roundId },
   });
@@ -27,16 +27,10 @@ const SingleRound = () => {
   // console.log(round);
   const renderSection = () => {
     if (currentSection === "Competitors") {
-      return (
-        <AddToRound
-          competitors={competitors}
-          competing={round}
-          roundId={roundId}
-        />
-      );
+      return <AddToRound competing={round} roundId={roundId} />;
     }
     if (currentSection === "Qualifying") {
-      // console.log(qualifyData);
+      console.log(qualifyData);
       return <QualifyList qualifiers={qualifiers} />;
     }
     // if (currentSection === "Battles") {

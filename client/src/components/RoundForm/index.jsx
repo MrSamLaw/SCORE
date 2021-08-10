@@ -1,14 +1,14 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
 // import auth from "../../utils/auth";
 
-// import { ADD_ROUND } from "../../utils/mutations";
+import { ADD_ROUND } from "../../utils/mutations";
 import { QUERY_SEASONS } from "../../utils/queries";
 
 const RoundForm = () => {
   const [roundNo, setRoundNo] = useState("");
   const [seasonYear, setSeasonYear] = useState("");
-  // const [addRound] = useMutation(ADD_ROUND);
+  const [addRound] = useMutation(ADD_ROUND);
   const { data: seasonsData } = useQuery(QUERY_SEASONS);
   // const { data: compData } = useQuery(QUERY_COMPETITORS);
   const seasons = seasonsData?.seasons || [];
@@ -28,19 +28,19 @@ const RoundForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    console.log(roundNo);
     console.log(seasonYear);
-    // try {
-    //   addRound({
-    //     //const { data } = await
-    //     variables: {
-    //       roundNo,
-    //       seasonYear,
-    //     },
-    //   });
-    //   setRoundNo("");
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const { data } = await addRound({
+        variables: {
+          roundNo: roundNo,
+          season: seasonYear,
+        },
+      });
+      setRoundNo("");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleChange = (event) => {
@@ -52,10 +52,10 @@ const RoundForm = () => {
   };
   const handleSeasonChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     if (name === "seasonYear") {
       setSeasonYear(value);
     }
+    console.log(value);
   };
 
   return (

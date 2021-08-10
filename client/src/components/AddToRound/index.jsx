@@ -1,51 +1,92 @@
 import "./addToRound.scss";
 
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_QUALIFIER } from "../../utils/mutations";
+import { useState, useEffect } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_COMPETITORS } from "../../utils/queries";
+import { ADD_QUALIFIER, ADD_ROUND_QUALIFIERS } from "../../utils/mutations";
 
-const AddToRound = ({ competitors, competing, roundId }) => {
+const AddToRound = ({ competing, roundId }) => {
+  const { data: compData } = useQuery(QUERY_COMPETITORS);
+  const [competitors, setCompetitors] = useState([]);
+
   const [roundCompetitors, setRoundCompetitors] = useState([]);
   const [addQualifier] = useMutation(ADD_QUALIFIER);
-  if (!competitors.length) {
-    return <h3>No Registered Competitors Yet</h3>;
-  }
+  const [addRoundQualifiers] = useMutation(ADD_ROUND_QUALIFIERS);
+
+  // if (!competitors.length) {
+  //   return <h3>No Registered Competitors Yet</h3>;
+  // }
   // console.log(roundId);
   // console.log(competing);
   // console.log(roundCompetitors);
 
+  useEffect(() => {
+    setCompetitors(compData?.competitors);
+  }, [compData?.competitors]);
+  //Query Competitors
+
   // OnClick
-  const compClick = (ThisShouldBeCompetitorID) => {
-    console.log(ThisShouldBeCompetitorID);
+  const compClick = (competitorId) => {
+    // console.log(CompetitorID);
     //  -> CreateQualifier with Competitor
-    // addQualifier({variables: ThisShouldBeCompetitorId, roundId})
+    setRoundCompetitors([...roundCompetitors, competitorId]);
+    let filteredCompetitors = competitors.filter(
+      (competitor) => competitor._id !== competitorId
+    );
+    console.log("Filtered");
+    console.log(filteredCompetitors);
+    console.log("removed");
+    console.log(competitorId);
+    setCompetitors(filteredCompetitors);
+    addQualifier({
+      variables: { competitor: competitorId, round: roundId },
+    });
 
     //  -> AddQualifier to Round
-    setRoundCompetitors([...roundCompetitors, ThisShouldBeCompetitorID]);
+    //    -> Put Qualifiers into Array
+
+    console.log(roundCompetitors);
+    //    -> Put Array into Round/Qualifiers
 
     //  -> Remove Competitor from List
     //  This should be able to be done with a filter below.
   };
-
+  const finalClick = () => {
+    console.log(roundId);
+    console.log(roundCompetitors);
+    addRoundQualifiers({
+      variables: {
+        roundId: roundId,
+        qualifiers: roundCompetitors,
+      },
+    });
+  };
   return (
     <div>
-      {/* Can I change this map to some kind of filter that filters out IDs that are in the round/roundCompetitors  */}
-      {competitors &&
-        competitors.map((competitor) => (
-          <div
-            key={competitor._id}
-            className="card"
-            onClick={() => compClick("ThisShouldBeCompetitorID")}
-          >
-            <div className="left">
-              <p className="carNo">{competitor.carNo}</p>
+      <div>
+        {/* 
+      NOT SEEING STATE - Try Ternary
+       */}
+        {competitors &&
+          competitors.map((competitor) => (
+            <div
+              key={competitor._id}
+              className="card"
+              onClick={() => compClick(competitor._id)}
+            >
+              <div className="left">
+                <p className="carNo">{competitor.carNo}</p>
+              </div>
+              <div className="right">
+                <p>{competitor.firstName}</p>
+                <p>{competitor.lastName}</p>
+              </div>
             </div>
-            <div className="right">
-              <p>{competitor.firstName}</p>
-              <p>{competitor.lastName}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+      </div>
+      <div>
+        <button onClick={() => finalClick()}>Finalise Competitors</button>
+      </div>
     </div>
   );
 };

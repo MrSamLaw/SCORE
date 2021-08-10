@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_ROUND = gql`
-  mutation addRound($roundNo: Int!) {
-    addRound(roundNo: $roundNo, seasonId:$_id) {
+  mutation addRound($roundNo: Int!, $season:ID!) {
+    addRound(roundNo: $roundNo, seasonId:$season) {
       _id
       roundNo
       season {
@@ -48,10 +48,16 @@ export const ADD_COMPETITOR = gql`
 `;
 
 export const ADD_QUALIFIER = gql`
-  mutation addQualifier($competitor:ID, $round:ID){
-    addQualifier(competitor:$competitor, round:$round){
+  mutation addQualifier($competitor: ID, $round:ID){
+  addQualifier(competitor: $competitor, round:$round){
       _id
     }
     
+  }
+`;
+
+export const ADD_ROUND_QUALIFIERS = gql`
+  mutation AddRoundQualifiers($roundId:ID, $qualifiers: [ID]){
+    _id
   }
 `;
