@@ -17,7 +17,9 @@ const resolvers = {
         round: async (parent, { roundId }) => {
             console.log(roundId);
             return Round.findOne({ _id: roundId })
-                .populate('qualifiers').populate({
+                .populate('season')
+                .populate('qualifiers')
+                .populate({
                     path: 'qualfiers',
                     populate: 'competitor'
                 });
