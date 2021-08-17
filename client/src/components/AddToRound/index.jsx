@@ -51,7 +51,8 @@ const AddToRound = ({ competing, roundId }) => {
     //  -> Remove Competitor from List
     //  This should be able to be done with a filter below.
   };
-  const finalClick = () => {
+  const finalClick = (roundCompetitors) => {
+    console.log("finalClick");
     console.log(roundId);
     console.log(roundCompetitors);
     addRoundQualifiers({
@@ -85,7 +86,9 @@ const AddToRound = ({ competing, roundId }) => {
           ))}
       </div>
       <div>
-        <button onClick={() => finalClick()}>Finalise Competitors</button>
+        <button onClick={() => finalClick(roundCompetitors)}>
+          Finalise Competitors
+        </button>
       </div>
     </div>
   );

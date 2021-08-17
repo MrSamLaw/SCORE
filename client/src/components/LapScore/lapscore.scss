@@ -1,0 +1,12 @@
+.lapscore {
+  width: 90%;
+
+  .lapResult {
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+  }
+}

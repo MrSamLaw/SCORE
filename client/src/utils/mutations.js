@@ -49,7 +49,7 @@ export const ADD_COMPETITOR = gql`
 
 export const ADD_QUALIFIER = gql`
   mutation addQualifier($competitor: ID, $round:ID){
-  addQualifier(competitor: $competitor, round:$round){
+    addQualifier(competitor: $competitor, round:$round){
       _id
     }
     
@@ -58,6 +58,11 @@ export const ADD_QUALIFIER = gql`
 
 export const ADD_ROUND_QUALIFIERS = gql`
   mutation AddRoundQualifiers($roundId:ID, $qualifiers: [ID]){
-    _id
+    addRoundQualifiers(roundId:$roundId, qualifiers:$qualifiers) {
+      _id
+      qualifiers {
+        _id
+      }
+    }
   }
 `;
