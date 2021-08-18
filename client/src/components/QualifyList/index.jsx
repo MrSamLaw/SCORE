@@ -55,8 +55,8 @@ const QualifyList = () => {
                 <button type="submit">Confirm</button> */}
               {/* Submits qualTwo Score  */}
               {/* </form> */}
-              <LapScore lapNo="1" />
-              <LapScore lapNo="2" />
+              <LapScore lapNo="1" qId={qualifier._id} />
+              <LapScore lapNo="2" qId={qualifier._id} />
             </div>
           </div>
         ))}
