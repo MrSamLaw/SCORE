@@ -88,6 +88,8 @@ type Mutation {
     addCompetitor(firstName: String!, lastName:String!,carNo:Int):Competitor
     # addToRound(roundId:ID!, competitor:ID!):Round
     addRoundQualifiers(roundId:ID, qualifiers:[ID]):Round
+    addLapOne(qualifierId:ID!, qualOne:Int):Qualifier
+    addLapTwo(qualifierId:ID!, qualTwo:Int):Qualifier
     } 
 `;
 

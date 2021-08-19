@@ -49,7 +49,7 @@ export const ADD_COMPETITOR = gql`
 
 export const ADD_QUALIFIER = gql`
   mutation addQualifier($competitor: ID, $round:ID){
-  addQualifier(competitor: $competitor, round:$round){
+    addQualifier(competitor: $competitor, round:$round){
       _id
     }
     
@@ -58,6 +58,43 @@ export const ADD_QUALIFIER = gql`
 
 export const ADD_ROUND_QUALIFIERS = gql`
   mutation AddRoundQualifiers($roundId:ID, $qualifiers: [ID]){
-    _id
+    addRoundQualifiers(roundId:$roundId, qualifiers:$qualifiers) {
+      _id
+      qualifiers {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_LAP_ONE = gql`
+  mutation addLapOne($qualifierId:ID!, $qualOne:Int){
+    addLapOne(qualifierId:$qualifierId, qualOne:$qualOne) {
+      _id
+      qualOne
+      # qualTwo
+      competitor {
+        _id
+        firstName
+        lastName
+        carNo
+      }
+    }
+  }
+`;
+
+export const ADD_LAP_TWO = gql`
+  mutation addLapTwo($qualifierId:ID!, $qualTwo:Int){
+    addLapTwo(qualifierId:$qualifierId, qualTwo:$qualTwo) {
+      _id
+      qualOne
+      qualTwo
+      # competitor {
+      #   _id
+      #   firstName
+      #   lastName
+      #   carNo
+      # }
+    }
   }
 `;

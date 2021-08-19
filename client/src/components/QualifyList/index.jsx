@@ -5,9 +5,8 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ROUND_QUALIFIERS } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import LapScore from "../LapScore";
 const QualifyList = () => {
-  // console.log(qualifiers);
-
   const { roundId } = useParams();
   const { data } = useQuery(QUERY_ROUND_QUALIFIERS, {
     variables: { roundId: roundId },
@@ -18,7 +17,7 @@ const QualifyList = () => {
     setQualifiers(data?.roundQualifiers.qualifiers);
   }, [data?.roundQualifiers.qualifiers]);
 
-  // console.log(qualifiers);
+  console.log(qualifiers);
   // if (!qualifiers.length)
   //   return <h3>No Competitors are entered in this round</h3>;
 
@@ -44,18 +43,20 @@ const QualifyList = () => {
               <p>{qualifier.competitor.lastName}</p>
             </div>
             <div className="qScores">
-              <form onSubmit={L1Click}>
+              {/* <form onSubmit={L1Click}>
                 <label>Lap 1</label>
                 <input></input>
-                <button type="submit">Confirm</button>
-                {/* Submits qualOne Score  */}
-              </form>
+                <button type="submit">Confirm</button> */}
+              {/* Submits qualOne Score  */}
+              {/* </form>
               <form onSubmit={L2Click}>
                 <label>Lap 2</label>
                 <input></input>
-                <button type="submit">Confirm</button>
-                {/* Submits qualTwo Score  */}
-              </form>
+                <button type="submit">Confirm</button> */}
+              {/* Submits qualTwo Score  */}
+              {/* </form> */}
+              <LapScore lapNo="1" qId={qualifier._id} />
+              <LapScore lapNo="2" qId={qualifier._id} />
             </div>
           </div>
         ))}
