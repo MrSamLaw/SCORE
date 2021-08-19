@@ -6,6 +6,7 @@ import { QUERY_ROUND_QUALIFIERS } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LapScore from "../LapScore";
+import SubTitle from "../SubTitle";
 
 const QualifyList = () => {
   const { roundId } = useParams();
@@ -56,8 +57,6 @@ const QualifyList = () => {
                 <p>{qualifier.competitor.lastName}</p>
               </div>
               <div className="qScores">
-                {qualifier.qualOne}
-                {qualifier.qualTwo}
                 <LapScore lapNo="1" qId={qualifier._id} />
                 <LapScore lapNo="2" qId={qualifier._id} />
               </div>
@@ -103,31 +102,21 @@ const QualifyList = () => {
       </div>
       <hr />
       <section>
-        <p>
-          This section holds list of drivers who have completed qualifying, and
-          orders them according to highest score.
-        </p>
+        <SubTitle heading="Qualifying Rank" />
         <div>
           <p> Car No - Driver Name - Best - Second - Rank</p>
           <div>
             {qualifiers &&
               qualifiers
                 .filter((q) => q.qualTwo !== 0)
-                .map((qualifier) => (
+                .map((qualifier, index) => (
                   <div key={qualifier._id} className="card">
-                    <div className="left">
-                      <p className="carNo">{qualifier.competitor.carNo}</p>
-                    </div>
-                    <div className="right">
-                      <p>{qualifier.competitor.firstName}</p>
-                      <p>{qualifier.competitor.lastName}</p>
-                    </div>
-                    <div className="qScores">
-                      {qualifier.qualOne}
-                      {qualifier.qualTwo}
-                      <LapScore lapNo="1" qId={qualifier._id} />
-                      <LapScore lapNo="2" qId={qualifier._id} />
-                    </div>
+                    <p className="carNo">
+                      {qualifier.competitor.carNo} |{" "}
+                      {qualifier.competitor.firstName}{" "}
+                      {qualifier.competitor.lastName} | {qualifier.qualOne} |
+                      {qualifier.qualTwo} | {index + 1}
+                    </p>
                   </div>
                 ))}
           </div>
