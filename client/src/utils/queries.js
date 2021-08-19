@@ -79,6 +79,8 @@ export const QUERY_ROUND_QUALIFIERS = gql`
             roundNo
             qualifiers{
                 _id
+                qualOne
+                qualTwo
                 competitor {
                     _id
                     firstName

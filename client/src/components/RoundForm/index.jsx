@@ -8,7 +8,7 @@ import { QUERY_SEASONS } from "../../utils/queries";
 const RoundForm = () => {
   const [roundNo, setRoundNo] = useState("");
   const [seasonYear, setSeasonYear] = useState("");
-  const [addRound] = useMutation(ADD_ROUND);
+  const [addRound, { data, loading, error }] = useMutation(ADD_ROUND);
   const { data: seasonsData } = useQuery(QUERY_SEASONS);
   // const { data: compData } = useQuery(QUERY_COMPETITORS);
   const seasons = seasonsData?.seasons || [];
@@ -25,6 +25,10 @@ const RoundForm = () => {
   //     }
   //   },
   // });
+
+  if (error) {
+    console.log({ error });
+  }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -73,11 +77,8 @@ const RoundForm = () => {
 
           <select name="seasonYear" onChange={handleSeasonChange}>
             {seasons.map((season) => (
-              <option
-                key={season._id}
-                value={season._id}
-                defaultValue={{ value: season._id }}
-              >
+              <option key={season._id} value={season._id}>
+                {" "}
                 {season.year}
               </option>
             ))}

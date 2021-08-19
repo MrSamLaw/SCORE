@@ -102,27 +102,11 @@ const resolvers = {
                 roundId, { $push: { qualifiers: qualifiers } }, { new: true });
         },
         addLapOne: async (parent, { qualifierId, qualOne }, context) => {
-            console.log(qualifierId);
-            console.log(qualOne);
             return await Qualifier.findOneAndUpdate(
                 { _id: qualifierId },
                 { $set: { qualOne: qualOne } },
                 { "new": true } //returns new document
             );
-
-            // if (!qualScore) {
-            //     throw new Error('Unable to find Qualifier');
-            // }
-            // if (qualOne !== undefined) {
-            //     qualScore.qualOne = qualOne;
-            //     console.log(qualScore.qualOne)
-            // }
-            // if (qualTwo !== undefined) {
-            //     qualScore.qualTwo = qualTwo;
-            //     console.log(qualScore.qualTwo)
-            // }
-            // console.log(qualScore);
-            // return qualScore;
         },
         addLapTwo: async (parent, { qualifierId, qualTwo }, context) => {
             return await Qualifier.findOneAndUpdate(

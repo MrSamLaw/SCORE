@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 
 export const ADD_ROUND = gql`
   mutation addRound($roundNo: Int!, $season:ID!) {
-    addRound(roundNo: $roundNo, seasonId:$season) {
+    addRound(roundNo: $roundNo, season:$season) {
       _id
       roundNo
       season {
@@ -89,12 +89,12 @@ export const ADD_LAP_TWO = gql`
       _id
       qualOne
       qualTwo
-      # competitor {
-      #   _id
-      #   firstName
-      #   lastName
-      #   carNo
-      # }
+      competitor {
+        _id
+        firstName
+        lastName
+        carNo
+      }
     }
   }
 `;

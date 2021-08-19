@@ -6,6 +6,7 @@ import { QUERY_ROUND_QUALIFIERS } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LapScore from "../LapScore";
+
 const QualifyList = () => {
   const { roundId } = useParams();
   const { data } = useQuery(QUERY_ROUND_QUALIFIERS, {
@@ -21,18 +22,12 @@ const QualifyList = () => {
   // if (!qualifiers.length)
   //   return <h3>No Competitors are entered in this round</h3>;
 
-  const L1Click = async (event) => {
-    event.preventDefault();
-    console.log("L1Click");
-  };
-
-  const L2Click = async (event) => {
-    event.preventDefault();
-    console.log("L2Click");
-  };
+  // const oneLapScored = qualifiers.filter((q) => q.qualOne !== 0);
+  // console.log(oneLapScored);
+  console.log(qualifiers);
   return (
     <div>
-      {qualifiers &&
+      {/* {qualifiers &&
         qualifiers.map((qualifier) => (
           <div key={qualifier._id} className="card">
             <div className="left">
@@ -43,23 +38,31 @@ const QualifyList = () => {
               <p>{qualifier.competitor.lastName}</p>
             </div>
             <div className="qScores">
-              {/* <form onSubmit={L1Click}>
-                <label>Lap 1</label>
-                <input></input>
-                <button type="submit">Confirm</button> */}
-              {/* Submits qualOne Score  */}
-              {/* </form>
-              <form onSubmit={L2Click}>
-                <label>Lap 2</label>
-                <input></input>
-                <button type="submit">Confirm</button> */}
-              {/* Submits qualTwo Score  */}
-              {/* </form> */}
               <LapScore lapNo="1" qId={qualifier._id} />
               <LapScore lapNo="2" qId={qualifier._id} />
             </div>
           </div>
-        ))}
+        ))} */}
+      {qualifiers &&
+        qualifiers
+          .filter((q) => q.qualTwo === 0)
+          .map((qualifier) => (
+            <div key={qualifier._id} className="card">
+              <div className="left">
+                <p className="carNo">{qualifier.competitor.carNo}</p>
+              </div>
+              <div className="right">
+                <p>{qualifier.competitor.firstName}</p>
+                <p>{qualifier.competitor.lastName}</p>
+              </div>
+              <div className="qScores">
+                {qualifier.qualOne}
+                {qualifier.qualTwo}
+                <LapScore lapNo="1" qId={qualifier._id} />
+                <LapScore lapNo="2" qId={qualifier._id} />
+              </div>
+            </div>
+          ))}
       <div>
         <p>
           This section holds all drivers who haven't completed 2 qualifying laps
@@ -106,6 +109,28 @@ const QualifyList = () => {
         </p>
         <div>
           <p> Car No - Driver Name - Best - Second - Rank</p>
+          <div>
+            {qualifiers &&
+              qualifiers
+                .filter((q) => q.qualTwo !== 0)
+                .map((qualifier) => (
+                  <div key={qualifier._id} className="card">
+                    <div className="left">
+                      <p className="carNo">{qualifier.competitor.carNo}</p>
+                    </div>
+                    <div className="right">
+                      <p>{qualifier.competitor.firstName}</p>
+                      <p>{qualifier.competitor.lastName}</p>
+                    </div>
+                    <div className="qScores">
+                      {qualifier.qualOne}
+                      {qualifier.qualTwo}
+                      <LapScore lapNo="1" qId={qualifier._id} />
+                      <LapScore lapNo="2" qId={qualifier._id} />
+                    </div>
+                  </div>
+                ))}
+          </div>
         </div>
       </section>
     </div>

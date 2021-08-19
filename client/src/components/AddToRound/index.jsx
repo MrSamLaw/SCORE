@@ -18,16 +18,16 @@ const AddToRound = ({ competing, roundId }) => {
   // }
   // console.log(roundId);
   // console.log(competing);
-  // console.log(roundCompetitors);
+  console.log(roundCompetitors);
 
   useEffect(() => {
     setCompetitors(compData?.competitors);
   }, [compData?.competitors]);
+
   //Query Competitors
 
   // OnClick
   const compClick = (competitorId) => {
-    // console.log(CompetitorID);
     //  -> CreateQualifier with Competitor
     setRoundCompetitors([...roundCompetitors, competitorId]);
     let filteredCompetitors = competitors.filter(
@@ -37,6 +37,8 @@ const AddToRound = ({ competing, roundId }) => {
     console.log(filteredCompetitors);
     console.log("removed");
     console.log(competitorId);
+    console.log("round");
+    console.log(roundCompetitors);
     setCompetitors(filteredCompetitors);
     addQualifier({
       variables: { competitor: competitorId, round: roundId },
@@ -65,9 +67,6 @@ const AddToRound = ({ competing, roundId }) => {
   return (
     <div>
       <div>
-        {/* 
-      NOT SEEING STATE - Try Ternary
-       */}
         {competitors &&
           competitors.map((competitor) => (
             <div
